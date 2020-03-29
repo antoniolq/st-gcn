@@ -60,6 +60,7 @@ class Demo(IO):
 
         # parse skeleton data
         pose, _ = utils.video.video_info_parsing(video_info)
+        np.save('pose.npy', pose)
         data = torch.from_numpy(pose)
         data = data.unsqueeze(0)
         data = data.float().to(self.dev).detach()
