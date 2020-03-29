@@ -7,6 +7,7 @@ backup/*
 .vscode
 model/*
 *.pt
+*.out
 *.caffemodel
 cache/
 bak/*
