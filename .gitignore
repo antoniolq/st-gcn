@@ -11,6 +11,7 @@ model/*
 cache/
 bak/*
 resource/*
+.idea/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
