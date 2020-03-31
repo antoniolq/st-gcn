@@ -52,7 +52,8 @@ def gendata(
     for i, s in enumerate(sample_name):
         data, label = feeder[i]
         # labels limited
-        if feeder[i] != None:
+        if label != -1:
+            print("trimming")
             sample_name_trimed.append(i)
 
     fp = open_memmap(
