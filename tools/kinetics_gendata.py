@@ -77,10 +77,9 @@ def gendata(
                               i + 1, len(sample_name)))
             fp[i, :, 0:data.shape[1], :, :] = data
             sample_label.append(label)
-            sample_name_trimed.append(i)
 
         with open(label_out_path, 'wb') as f:
-            pickle.dump((sample_name_trimed, list(sample_label)), f)
+            pickle.dump((sample_name_trimed.tolist(), list(sample_label)), f)
 
 
 if __name__ == '__main__':
