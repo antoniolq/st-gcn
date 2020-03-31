@@ -103,7 +103,7 @@ class Feeder_kinetics(torch.utils.data.Dataset):
             video_info = json.load(f)
         #labels limited
         if video_info['label_index'] not in [305,316,330,338,105]:
-            print("ignore",video_info['label_index'])
+            # print("ignore",video_info['label_index'])
             return None, -1
         else:
             # fill data_numpy
