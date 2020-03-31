@@ -49,26 +49,26 @@ def gendata(
     sample_label = []
     sample_name_trimed = []
 
-    for i, s in enumerate(sample_name):
-        data, label = feeder[i]
-        # labels limited
-        # print("trimming", label)
-        if label != -1:
-            print("------------------------------------")
-            print("trimming",label)
-            sample_name_trimed.append(sample_name[i])
-    save_sample_name = np.array(sample_name_trimed)
-    print("saving......")
-    np.save('sample_name.npy',save_sample_name)
-    print("saved......")
-    # sample_name_trimed = np.load('sample_name.npy')
+    # for i, s in enumerate(sample_name):
+    #     data, label = feeder[i]
+    #     # labels limited
+    #     # print("trimming", label)
+    #     if label != -1:
+    #         print("------------------------------------")
+    #         print("trimming",label)
+    #         sample_name_trimed.append(sample_name[i])
+    # save_sample_name = np.array(sample_name_trimed)
+    # print("saving......")
+    # np.save('sample_name.npy',save_sample_name)
+    # print("saved......")
+    sample_name_trimed = np.load('sample_name.npy')
     fp = open_memmap(
         data_out_path,
         dtype='float32',
         mode='w+',
         shape=(len(sample_name_trimed), 3, max_frame, 18, num_person_out))
 
-    for i, s in enumerate(sample_name):
+    for i, s in enumerate(sample_name_trimed):
         data, label = feeder[i]
         #labels limited
         if label != -1:
