@@ -52,7 +52,9 @@ def gendata(
     for i, s in enumerate(sample_name):
         data, label = feeder[i]
         # labels limited
+        print("trimming", label)
         if label != -1:
+            print("------------------------------------")
             print("trimming",label)
             sample_name_trimed.append(i)
     save_sample_name = np.array(sample_name_trimed)
