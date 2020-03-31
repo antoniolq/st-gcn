@@ -64,7 +64,7 @@ def gendata(
     for i, s in enumerate(sample_name):
         data, label = feeder[i]
         #labels limited
-        if feeder[i] != None:
+        if label != -1:
             print_toolbar(i * 1.0 / len(sample_name),
                           '({:>5}/{:<5}) Processing data: '.format(
                               i + 1, len(sample_name)))
