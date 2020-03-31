@@ -52,7 +52,7 @@ def gendata(
     for i, s in enumerate(sample_name):
         data, label = feeder[i]
         # labels limited
-        print("trimming", label)
+        # print("trimming", label)
         if label != -1:
             print("------------------------------------")
             print("trimming",label)
