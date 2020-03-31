@@ -101,51 +101,54 @@ class Feeder_kinetics(torch.utils.data.Dataset):
         sample_path = os.path.join(self.data_path, sample_name)
         with open(sample_path, 'r') as f:
             video_info = json.load(f)
+        #labels limited
+        if video_info['label_index'] not in [305,316,330,338,105]:
+            return None
+        else:
+            # fill data_numpy
+            data_numpy = np.zeros((self.C, self.T, self.V, self.num_person_in))
+            for frame_info in video_info['data']:
+                frame_index = frame_info['frame_index']
+                for m, skeleton_info in enumerate(frame_info["skeleton"]):
+                    if m >= self.num_person_in:
+                        break
+                    pose = skeleton_info['pose']
+                    score = skeleton_info['score']
+                    data_numpy[0, frame_index, :, m] = pose[0::2]
+                    data_numpy[1, frame_index, :, m] = pose[1::2]
+                    data_numpy[2, frame_index, :, m] = score
 
-        # fill data_numpy
-        data_numpy = np.zeros((self.C, self.T, self.V, self.num_person_in))
-        for frame_info in video_info['data']:
-            frame_index = frame_info['frame_index']
-            for m, skeleton_info in enumerate(frame_info["skeleton"]):
-                if m >= self.num_person_in:
-                    break
-                pose = skeleton_info['pose']
-                score = skeleton_info['score']
-                data_numpy[0, frame_index, :, m] = pose[0::2]
-                data_numpy[1, frame_index, :, m] = pose[1::2]
-                data_numpy[2, frame_index, :, m] = score
+            # centralization
+            data_numpy[0:2] = data_numpy[0:2] - 0.5
+            data_numpy[0][data_numpy[2] == 0] = 0
+            data_numpy[1][data_numpy[2] == 0] = 0
 
-        # centralization
-        data_numpy[0:2] = data_numpy[0:2] - 0.5
-        data_numpy[0][data_numpy[2] == 0] = 0
-        data_numpy[1][data_numpy[2] == 0] = 0
+            # get & check label index
+            label = video_info['label_index']
+            assert (self.label[index] == label)
 
-        # get & check label index
-        label = video_info['label_index']
-        assert (self.label[index] == label)
+            # data augmentation
+            if self.random_shift:
+                data_numpy = tools.random_shift(data_numpy)
+            if self.random_choose:
+                data_numpy = tools.random_choose(data_numpy, self.window_size)
+            elif self.window_size > 0:
+                data_numpy = tools.auto_pading(data_numpy, self.window_size)
+            if self.random_move:
+                data_numpy = tools.random_move(data_numpy)
 
-        # data augmentation
-        if self.random_shift:
-            data_numpy = tools.random_shift(data_numpy)
-        if self.random_choose:
-            data_numpy = tools.random_choose(data_numpy, self.window_size)
-        elif self.window_size > 0:
-            data_numpy = tools.auto_pading(data_numpy, self.window_size)
-        if self.random_move:
-            data_numpy = tools.random_move(data_numpy)
+            # sort by score
+            sort_index = (-data_numpy[2, :, :, :].sum(axis=1)).argsort(axis=1)
+            for t, s in enumerate(sort_index):
+                data_numpy[:, t, :, :] = data_numpy[:, t, :, s].transpose((1, 2,
+                                                                           0))
+            data_numpy = data_numpy[:, :, :, 0:self.num_person_out]
 
-        # sort by score
-        sort_index = (-data_numpy[2, :, :, :].sum(axis=1)).argsort(axis=1)
-        for t, s in enumerate(sort_index):
-            data_numpy[:, t, :, :] = data_numpy[:, t, :, s].transpose((1, 2,
-                                                                       0))
-        data_numpy = data_numpy[:, :, :, 0:self.num_person_out]
+            # match poses between 2 frames
+            if self.pose_matching:
+                data_numpy = tools.openpose_match(data_numpy)
 
-        # match poses between 2 frames
-        if self.pose_matching:
-            data_numpy = tools.openpose_match(data_numpy)
-
-        return data_numpy, label
+            return data_numpy, label
 
     def top_k(self, score, top_k):
         assert (all(self.label >= 0))

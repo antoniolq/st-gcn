@@ -47,23 +47,33 @@ def gendata(
 
     sample_name = feeder.sample_name
     sample_label = []
+    sample_name_trimed = []
+
+    for i, s in enumerate(sample_name):
+        data, label = feeder[i]
+        # labels limited
+        if feeder[i] != None:
+            sample_name_trimed.append(i)
 
     fp = open_memmap(
         data_out_path,
         dtype='float32',
         mode='w+',
-        shape=(len(sample_name), 3, max_frame, 18, num_person_out))
+        shape=(len(sample_name_trimed), 3, max_frame, 18, num_person_out))
 
     for i, s in enumerate(sample_name):
         data, label = feeder[i]
-        print_toolbar(i * 1.0 / len(sample_name),
-                      '({:>5}/{:<5}) Processing data: '.format(
-                          i + 1, len(sample_name)))
-        fp[i, :, 0:data.shape[1], :, :] = data
-        sample_label.append(label)
+        #labels limited
+        if feeder[i] != None:
+            print_toolbar(i * 1.0 / len(sample_name),
+                          '({:>5}/{:<5}) Processing data: '.format(
+                              i + 1, len(sample_name)))
+            fp[i, :, 0:data.shape[1], :, :] = data
+            sample_label.append(label)
+            sample_name_trimed.append(i)
 
-    with open(label_out_path, 'wb') as f:
-        pickle.dump((sample_name, list(sample_label)), f)
+        with open(label_out_path, 'wb') as f:
+            pickle.dump((sample_name_trimed, list(sample_label)), f)
 
 
 if __name__ == '__main__':
@@ -72,7 +82,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--data_path', default='data/Kinetics/kinetics-skeleton')
     parser.add_argument(
-        '--out_folder', default='data/Kinetics/kinetics-skeleton')
+        '--out_folder', default='data/Trim/kinetics-skeleton')
     arg = parser.parse_args()
 
     part = ['train', 'val']
