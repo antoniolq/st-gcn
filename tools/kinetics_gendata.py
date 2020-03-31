@@ -67,7 +67,7 @@ def gendata(
         dtype='float32',
         mode='w+',
         shape=(len(sample_name_trimed), 3, max_frame, 18, num_person_out))
-    relabel = {305: 1, 316: 2, 330: 3, 338: 4, 105: 5}
+    relabel = {305: 0, 316: 1, 330: 2, 338: 3, 105: 4}
     for i, s in enumerate(sample_name_trimed):
         data, label = feeder[i]
         #labels limited
