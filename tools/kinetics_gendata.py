@@ -67,16 +67,16 @@ def gendata(
         dtype='float32',
         mode='w+',
         shape=(len(sample_name_trimed), 3, max_frame, 18, num_person_out))
-
+    relabel = {305: 1, 316: 2, 330: 3, 338: 4, 105: 5}
     for i, s in enumerate(sample_name_trimed):
         data, label = feeder[i]
         #labels limited
         if label != -1:
-            print_toolbar(i * 1.0 / len(sample_name),
+            print_toolbar(i * 1.0 / len(sample_name_trimed),
                           '({:>5}/{:<5}) Processing data: '.format(
-                              i + 1, len(sample_name)))
+                              i + 1, len(sample_name_trimed)))
             fp[i, :, 0:data.shape[1], :, :] = data
-            sample_label.append(label)
+            sample_label.append(relabel[label])
 
         with open(label_out_path, 'wb') as f:
             pickle.dump((sample_name_trimed.tolist(), list(sample_label)), f)
