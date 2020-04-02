@@ -1,4 +1,4 @@
-weights: ./models/st_gcn.kinetics.pt
+weights: ./work_dir/recognition/kinetics_skeleton/ST_GCN/epoch50_model.pt
 
 # model
 model: net.st_gcn.Model
