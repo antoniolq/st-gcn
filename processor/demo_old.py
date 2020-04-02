@@ -25,7 +25,7 @@ class Demo(IO):
         output_sequence_path = '{}/{}.json'.format(output_sequence_dir, video_name)
         output_result_dir = self.arg.output_dir
         output_result_path = '{}/{}.mp4'.format(output_result_dir, video_name)
-        label_name_path = './resource/kinetics_skeleton/label_name.txt'
+        label_name_path = './resource/kinetics_skeleton/label_name_10.txt'
         with open(label_name_path) as f:
             label_name = f.readlines()
             label_name = [line.rstrip() for line in label_name]
@@ -116,7 +116,7 @@ class Demo(IO):
             default='3dparty/openpose/build',
             help='Path to openpose')
         parser.add_argument('--output_dir',
-            default='./data/demo_result',
+            default='./data/demo_result/class10',
             help='Path to save results')
         parser.add_argument('--height',
             default=1080,
