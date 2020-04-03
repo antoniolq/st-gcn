@@ -48,9 +48,7 @@ class Model(nn.Module):
             GCN(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
             TCN(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
             GCN(64, 64, kernel_size, 1, **kwargs),
-            print("layer -1"),
             TCN(64, 64, kernel_size, 1, **kwargs),
-            print("layer -2"),
             GCN(64, 64, kernel_size, 1, **kwargs),
             TCN(64, 64, kernel_size, 1, **kwargs),
             GCN(64, 64, kernel_size, 1, **kwargs),
@@ -193,7 +191,7 @@ class GCN(nn.Module):
         res= self.residual(x)
         x, A = self.gcn(x, A)
         print("-------------------GCN-------------------")
-        print(type(x),x.size)
+        print(type(x))
         print(type(res))
         x = x + res
         return self.relu(x), A
