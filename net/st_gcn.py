@@ -46,7 +46,7 @@ class Model(nn.Module):
         kwargs0 = {k: v for k, v in kwargs.items() if k != 'dropout'}
         self.st_gcn_networks = nn.ModuleList((
             GCN(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
-            TCN(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
+            TCN(in_channels, 64, kernel_size, 1, residual=True, **kwargs0),
             GCN(64, 64, kernel_size, 1, **kwargs),
             TCN(64, 64, kernel_size, 1, **kwargs),
             GCN(64, 64, kernel_size, 1, **kwargs),
