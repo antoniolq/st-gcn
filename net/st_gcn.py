@@ -192,6 +192,8 @@ class st_gcn(nn.Module):
 
         res = self.residual(x)
         x, A = self.gcn(x, A)
+        print(res.size())
+        print(self.tcn(x).size())
         x = self.tcn(x) + res
 
         return self.relu(x), A
