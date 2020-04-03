@@ -190,7 +190,7 @@ class GCN(nn.Module):
 
         res= self.residual(x)
         x, A = self.gcn(x, A)
-        print("-------------------GCN-------------------")
+        # print("-------------------GCN-------------------")
         x = x + res
         return self.relu(x), A
 
@@ -267,7 +267,7 @@ class TCN(nn.Module):
     def forward(self, x, A):
 
         res = self.residual(x)
-        print("-------------------TCN-------------------")
+        # print("-------------------TCN-------------------")
         x = self.tcn(x) + res
 
         return self.relu(x), A
