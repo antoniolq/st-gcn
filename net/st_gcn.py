@@ -187,13 +187,12 @@ class GCN(nn.Module):
         self.relu = nn.ReLU(inplace=True)
 
     def forward(self, x, A):
-
-        res = self.residual(x)
-        x, A = self.gcn(x, A)
-        print(x.size)
-        print(res.size())
-        x += res
-
+        if self.residual:
+            res= self.residual(x)
+            x, A = self.gcn(x, A)
+            x += res
+        else:
+            x, A = self.gcn(x, A)
         return self.relu(x), A
 
 class TCN(nn.Module):
