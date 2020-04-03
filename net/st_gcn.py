@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 import torchvision.models as models
+import numpy as np
 from torchsummary import summary
 
 from net.utils.tgcn import ConvTemporalGraphical
@@ -269,7 +270,3 @@ class TCN(nn.Module):
         x = self.tcn(x) + res
 
         return self.relu(x), A
-
-if __name__ == '__main__':
-    net = Model(3, 400, dict(), True)
-    summary(net, (3, 64, 64))
