@@ -45,7 +45,7 @@ class Model(nn.Module):
         self.data_bn = nn.BatchNorm1d(in_channels * A.size(1))
         kwargs0 = {k: v for k, v in kwargs.items() if k != 'dropout'}
         self.st_gcn_networks = nn.ModuleList((
-            GCN(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
+            # GCN(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
             TCN(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
             GCN(64, 64, kernel_size, 1, **kwargs),
             TCN(64, 64, kernel_size, 1, **kwargs),
@@ -190,6 +190,7 @@ class GCN(nn.Module):
 
         res= self.residual(x)
         x, A = self.gcn(x, A)
+        print("-------------------GCN-------------------")
         print(type(x))
         print(type(res))
         x = x + res
@@ -268,6 +269,9 @@ class TCN(nn.Module):
     def forward(self, x, A):
 
         res = self.residual(x)
+        print("-------------------TCN-------------------")
+        print(type(self.tcn(x)))
+        print(type(res))
         x = self.tcn(x) + res
 
         return self.relu(x), A
