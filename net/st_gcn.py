@@ -191,8 +191,6 @@ class GCN(nn.Module):
         res= self.residual(x)
         x, A = self.gcn(x, A)
         print("-------------------GCN-------------------")
-        print(type(x))
-        print(type(res))
         x = x + res
         return self.relu(x), A
 
@@ -270,8 +268,6 @@ class TCN(nn.Module):
 
         res = self.residual(x)
         print("-------------------TCN-------------------")
-        print(type(self.tcn(x)))
-        print(type(res))
         x = self.tcn(x) + res
 
         return self.relu(x), A
