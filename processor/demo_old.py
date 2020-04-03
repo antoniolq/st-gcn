@@ -124,3 +124,7 @@ class Demo(IO):
         # endregion yapf: enable
 
         return parser
+
+if __name__=='__main__':
+    demo = Demo(IO)
+    demo.model
