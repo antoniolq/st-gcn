@@ -190,7 +190,7 @@ class GCN(nn.Module):
         if self.residual:
             res= self.residual(x)
             x, A = self.gcn(x, A)
-            x += res
+            x = x + res
         else:
             x, A = self.gcn(x, A)
         return self.relu(x), A
