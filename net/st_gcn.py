@@ -54,7 +54,7 @@ class Model(nn.Module):
             GCN(64, 64, kernel_size, 1, **kwargs),
             TCN(64, 64, kernel_size, 1, **kwargs),
             GCN(64, 128, kernel_size, 1, **kwargs),
-            TCN(64, 128, kernel_size, 1, **kwargs),
+            TCN(128, 128, kernel_size, 1, **kwargs),
             # GCN(128, 128, kernel_size, 1, **kwargs),
             # TCN(128, 128, kernel_size, 1, **kwargs),
             # GCN(128, 128, kernel_size, 1, **kwargs),
