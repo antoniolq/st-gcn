@@ -1,4 +1,4 @@
-work_dir: ./work_dir/recognition/kinetics_skeleton/Deep_ST_GCN
+work_dir: ./work_dir/recognition/kinetics_skeleton/Divide_ST_GCN
 
 # feeder
 feeder: feeder.feeder.Feeder
