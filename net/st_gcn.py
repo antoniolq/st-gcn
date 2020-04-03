@@ -191,7 +191,7 @@ class GCN(nn.Module):
         res= self.residual(x)
         x, A = self.gcn(x, A)
         print("-------------------GCN-------------------")
-        print(type(x))
+        print(type(x),x.size)
         print(type(res))
         x = x + res
         return self.relu(x), A
