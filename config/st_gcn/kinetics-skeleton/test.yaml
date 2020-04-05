@@ -1,4 +1,4 @@
-weights: /home/qingl/antonio/st-gcn/work_dir/recognition/kinetics_skeleton/ST_GCN/epoch50_model.pt
+weights: /home/qingl/antonio/st-gcn/work_dir/recognition/kinetics_skeleton/Divide_ST_GCN/epoch50_model.pt
 
 # feeder
 feeder: feeder.feeder.Feeder
@@ -18,5 +18,5 @@ model_args:
 
 # test 
 phase: test
-device: [0,1,2,3] 
+device: [2,3]
 test_batch_size: 64
