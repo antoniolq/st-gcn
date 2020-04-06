@@ -1,4 +1,4 @@
-weights: ./work_dir/recognition/kinetics_skeleton/ST_GCN/epoch50_model.pt
+weights: ./work_dir/recognition/kinetics_skeleton/Divide_ST_GCN/epoch50_model.pt
 
 # model
 model: net.st_gcn.Model
@@ -11,4 +11,4 @@ model_args:
     strategy: 'spatial'
     
 # training
-device: [0]
+device: [3]
