@@ -21,7 +21,7 @@ class DemoOffline(IO):
     def start(self):
         
         # initiate
-        label_name_path = './resource/kinetics_skeleton/label_name.txt'
+        label_name_path = './resource/kinetics_skeleton/label_name_400.txt'
         with open(label_name_path) as f:
             label_name = f.readlines()
             label_name = [line.rstrip() for line in label_name]
