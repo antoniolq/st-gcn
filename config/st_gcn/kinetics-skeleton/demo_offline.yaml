@@ -1,4 +1,4 @@
-weights: ./models/st_gcn.kinetics.pt
+weights: ./work_dir/recognition/kinetics_skeleton/Divide_ST_GCN/epoch50_model.pt
 model_fps: 30
 
 # model
