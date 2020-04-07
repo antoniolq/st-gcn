@@ -107,8 +107,7 @@ class Processor(IO):
         if self.arg.phase == 'train':
             log_dir = "/home/qingl/antonio/st-gcn/work_dir/recognition/kinetics_skeleton/Divide_version1_ST_GCN/epoch40_model.pt"
             checkpoint = torch.load(log_dir)
-            self.io.load_model(checkpoint['model'])
-            self.io.load_weights(checkpoint['optimizer'])
+            self.model.load_state_dict(checkpoint['model'])
             self.arg.start_epoch = checkpoint['epoch']
             print('加载 epoch {} 成功！'.format(self.arg.start_epoch))
             for epoch in range(self.arg.start_epoch, self.arg.num_epoch):
