@@ -47,23 +47,36 @@ class Model(nn.Module):
         self.st_gcn_networks = nn.ModuleList((
             GCN(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
             TCN(64, 64, kernel_size, 1, residual=True, **kwargs0),
+            # channels = 64 * 3
             GCN(64, 64, kernel_size, 1, **kwargs),
             TCN(64, 64, kernel_size, 1, **kwargs),
             GCN(64, 64, kernel_size, 1, **kwargs),
             TCN(64, 64, kernel_size, 1, **kwargs),
             GCN(64, 64, kernel_size, 1, **kwargs),
             TCN(64, 64, kernel_size, 1, **kwargs),
+            # channels = 128 * 3
             GCN(64, 128, kernel_size, 1, **kwargs),
             TCN(128, 128, kernel_size, 1, **kwargs),
             GCN(128, 128, kernel_size, 1, **kwargs),
             TCN(128, 128, kernel_size, 1, **kwargs),
             GCN(128, 128, kernel_size, 1, **kwargs),
             TCN(128, 128, kernel_size, 1, **kwargs),
+            # channels = 256 * 3
             GCN(128, 256, kernel_size, 1, **kwargs),
             TCN(256, 256, kernel_size, 1, **kwargs),
             GCN(256, 256, kernel_size, 1, **kwargs),
             TCN(256, 256, kernel_size, 1, **kwargs),
             GCN(256, 256, kernel_size, 1, **kwargs),
+            TCN(256, 256, kernel_size, 1, **kwargs),
+            # channels = 512 * 3
+            GCN(256, 512, kernel_size, 1, **kwargs),
+            TCN(512, 512, kernel_size, 1, **kwargs),
+            GCN(512, 512, kernel_size, 1, **kwargs),
+            TCN(512, 512, kernel_size, 1, **kwargs),
+            GCN(512, 512, kernel_size, 1, **kwargs),
+            TCN(512, 512, kernel_size, 1, **kwargs),
+            # channels = 256 * 3
+            GCN(512, 256, kernel_size, 1, **kwargs),
             TCN(256, 256, kernel_size, 1, **kwargs),
         ))
 

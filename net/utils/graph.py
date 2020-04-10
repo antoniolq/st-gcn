@@ -99,6 +99,7 @@ class Graph():
                 a_root = np.zeros((self.num_node, self.num_node))
                 a_close = np.zeros((self.num_node, self.num_node))
                 a_further = np.zeros((self.num_node, self.num_node))
+                a_uniform = normalize_adjacency
                 for i in range(self.num_node):
                     for j in range(self.num_node):
                         if self.hop_dis[j, i] == hop:
@@ -116,6 +117,7 @@ class Graph():
                 else:
                     A.append(a_root + a_close)
                     A.append(a_further)
+                    A.append(a_uniform)
             A = np.stack(A)
             self.A = A
         else:
