@@ -69,15 +69,15 @@ class Model(nn.Module):
             GCN(256, 256, kernel_size, 1, **kwargs),
             TCN(256, 256, kernel_size, 1, **kwargs),
             # channels = 512 * 3
-            GCN(256, 512, kernel_size, 1, **kwargs),
-            TCN(512, 512, kernel_size, 1, **kwargs),
-            GCN(512, 512, kernel_size, 1, **kwargs),
-            TCN(512, 512, kernel_size, 1, **kwargs),
-            GCN(512, 512, kernel_size, 1, **kwargs),
-            TCN(512, 512, kernel_size, 1, **kwargs),
-            # channels = 256 * 3
-            GCN(512, 256, kernel_size, 1, **kwargs),
-            TCN(256, 256, kernel_size, 1, **kwargs),
+            # GCN(256, 512, kernel_size, 1, **kwargs),
+            # TCN(512, 512, kernel_size, 1, **kwargs),
+            # GCN(512, 512, kernel_size, 1, **kwargs),
+            # TCN(512, 512, kernel_size, 1, **kwargs),
+            # GCN(512, 512, kernel_size, 1, **kwargs),
+            # TCN(512, 512, kernel_size, 1, **kwargs),
+            # # channels = 256 * 3
+            # GCN(512, 256, kernel_size, 1, **kwargs),
+            # TCN(256, 256, kernel_size, 1, **kwargs),
         ))
 
         # initialize parameters for edge importance weighting
