@@ -9,6 +9,7 @@ model/*
 *.out
 *.pt
 *.caffemodel
+*.npy
 cache/
 bak/*
 resource/*
