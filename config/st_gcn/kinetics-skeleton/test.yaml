@@ -1,4 +1,4 @@
-weights: /home/qingl/antonio/st-gcn/work_dir/recognition/kinetics_skeleton/Divide_ST_GCN/epoch50_model.pt
+weights: /home/qingl/antonio/st-gcn/work_dir/recognition/kinetics_skeleton/class400_v1/epoch50_model.pt
 
 # feeder
 feeder: feeder.feeder.Feeder
