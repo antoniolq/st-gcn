@@ -244,8 +244,6 @@ class TCN(nn.Module):
                 padding1,
             ),
             nn.BatchNorm2d(out_channels),
-            nn.Dropout(dropout, inplace=True),
-            nn.BatchNorm2d(out_channels),
             nn.ReLU(inplace=True),
             nn.Conv2d(
                 in_channels,
@@ -255,8 +253,6 @@ class TCN(nn.Module):
                 padding2,
             ),
             nn.BatchNorm2d(out_channels),
-            nn.Dropout(dropout, inplace=True),
-            nn.BatchNorm2d(out_channels),
             nn.ReLU(inplace=True),
             nn.Conv2d(
                 in_channels,
@@ -265,8 +261,6 @@ class TCN(nn.Module):
                 (stride, 1),
                 padding3,
             ),
-            nn.BatchNorm2d(out_channels),
-            nn.Dropout(dropout, inplace=True),
             nn.BatchNorm2d(out_channels),
             nn.ReLU(inplace=True),
             nn.Conv2d(
