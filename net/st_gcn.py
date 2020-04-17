@@ -163,8 +163,6 @@ class GCN(nn.Module):
         super().__init__()
 
         assert len(kernel_size) == 2
-        assert kernel_size[0] % 2 == 1
-        padding = ((kernel_size[0] - 1) // 2, 0)
 
         self.gcn = ConvTemporalGraphical(in_channels, out_channels,
                                          kernel_size[1])
