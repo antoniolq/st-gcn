@@ -40,7 +40,7 @@ class Model(nn.Module):
 
         # build networks
         spatial_kernel_size = A.size(0)
-        temporal_kernel_size = 15
+        temporal_kernel_size = {9, 15, 21, 27}
         kernel_size = (temporal_kernel_size, spatial_kernel_size)
         self.data_bn = nn.BatchNorm1d(in_channels * A.size(1))
         kwargs0 = {k: v for k, v in kwargs.items() if k != 'dropout'}
@@ -230,7 +230,10 @@ class TCN(nn.Module):
 
         assert len(kernel_size) == 2
         assert kernel_size[0] % 2 == 1
-        padding = ((kernel_size[0] - 1) // 2, 0)
+        padding1 = ((kernel_size[0][0] - 1) // 2, 0)
+        padding2 = ((kernel_size[0][1] - 1) // 2, 0)
+        padding3 = ((kernel_size[0][2] - 1) // 2, 0)
+        padding4 = ((kernel_size[0][3] - 1) // 2, 0)
 
         self.tcn = nn.Sequential(
             nn.BatchNorm2d(out_channels),
@@ -238,9 +241,42 @@ class TCN(nn.Module):
             nn.Conv2d(
                 in_channels,
                 out_channels,
-                (kernel_size[0], 1),
+                (kernel_size[0][0], 1),
                 (stride, 1),
-                padding,
+                padding1,
+            ),
+            nn.BatchNorm2d(out_channels),
+            nn.Dropout(dropout, inplace=True),
+            nn.BatchNorm2d(out_channels),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(
+                in_channels,
+                out_channels,
+                (kernel_size[0][1], 1),
+                (stride, 1),
+                padding2,
+            ),
+            nn.BatchNorm2d(out_channels),
+            nn.Dropout(dropout, inplace=True),
+            nn.BatchNorm2d(out_channels),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(
+                in_channels,
+                out_channels,
+                (kernel_size[0][2], 1),
+                (stride, 1),
+                padding3,
+            ),
+            nn.BatchNorm2d(out_channels),
+            nn.Dropout(dropout, inplace=True),
+            nn.BatchNorm2d(out_channels),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(
+                in_channels,
+                out_channels,
+                (kernel_size[0][3], 1),
+                (stride, 1),
+                padding4,
             ),
             nn.BatchNorm2d(out_channels),
             nn.Dropout(dropout, inplace=True),
