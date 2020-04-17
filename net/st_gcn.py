@@ -227,7 +227,7 @@ class TCN(nn.Module):
         super().__init__()
 
         assert len(kernel_size) == 2
-        assert kernel_size[0] % 2 == 1
+        # assert kernel_size[0] % 2 == 1
         padding1 = ((kernel_size[0][0] - 1) // 2, 0)
         padding2 = ((kernel_size[0][1] - 1) // 2, 0)
         padding3 = ((kernel_size[0][2] - 1) // 2, 0)
