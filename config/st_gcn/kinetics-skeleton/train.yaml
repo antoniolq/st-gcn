@@ -28,7 +28,7 @@ batch_size: 64
 test_batch_size: 64
 
 #optim
-base_lr: 0.5
+base_lr: 0.15
 step: [20, 30, 40, 50]
 num_epoch: 50
 
