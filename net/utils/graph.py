@@ -25,7 +25,7 @@ class Graph():
     def __init__(self,
                  layout='openpose',
                  strategy='uniform',
-                 max_hop=1,
+                 max_hop=2,
                  dilation=1):
         self.max_hop = max_hop
         self.dilation = dilation
