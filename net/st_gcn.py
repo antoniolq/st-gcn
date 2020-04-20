@@ -228,7 +228,7 @@ class TCN(nn.Module):
 
         assert len(kernel_size) == 2
         # assert kernel_size[0] % 2 == 1
-        padding = ((kernel_size[0][0] - 1) // 2, 0)
+        padding = ((kernel_size[0] - 1) // 2, 0)
 
         self.tcn = nn.Sequential(
             nn.BatchNorm2d(out_channels),
