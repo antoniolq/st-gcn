@@ -243,6 +243,7 @@ class TCN(nn.Module):
             ),
             nn.BatchNorm2d(out_channels),
             nn.ReLU(inplace=True),
+            nn.Dropout(dropout, inplace=True),
             nn.Conv2d(
                 in_channels,
                 out_channels,
