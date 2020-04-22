@@ -112,7 +112,7 @@ class Feeder_kinetics(torch.utils.data.Dataset):
         288-shaking
         305-situp
         319-sneezing
-        
+        105,161-fall
         '''
         if video_info['label_index'] not in [338,
                                              109,110,111,112,113,114,115,116,117,
@@ -123,7 +123,7 @@ class Feeder_kinetics(torch.utils.data.Dataset):
                                              288,
                                              305,
                                              319,
-                                             ]:
+                                             105,161]:
             # print("ignore",video_info['label_index'])
             return None, -1
         else:
