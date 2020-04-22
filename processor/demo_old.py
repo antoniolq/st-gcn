@@ -116,7 +116,7 @@ class Demo(IO):
             default='3dparty/openpose/build',
             help='Path to openpose')
         parser.add_argument('--output_dir',
-            default='./data/demo_result/class10',
+            default='./data/demo_result/origin/class400',
             help='Path to save results')
         parser.add_argument('--height',
             default=1080,
