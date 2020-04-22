@@ -86,7 +86,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Kinetics-skeleton Data Converter.')
     parser.add_argument(
-        '--data_path', default='/mnt/Disk1/qingl/data/Kinects/kinetics-skeleton')
+        '--data_path', default='/mnt/Disk1/qingl/data/kinetics-skeleton')
     parser.add_argument(
         '--out_folder', default='data/Trim/kinetics-skeleton')
     arg = parser.parse_args()
