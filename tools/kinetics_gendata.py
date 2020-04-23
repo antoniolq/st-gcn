@@ -67,7 +67,16 @@ def gendata(
         dtype='float32',
         mode='w+',
         shape=(len(sample_name_trimed), 3, max_frame, 18, num_person_out))
-    relabel = {305: 0, 316: 1, 330: 2, 338: 3, 105: 4}
+    relabel = {338: 0,
+               109: 1, 110: 1, 111: 1, 112: 1, 113: 1, 114: 1, 115: 1, 116: 1, 117: 1,
+               100: 2, 101: 2, 102: 2,
+               316: 3,
+               330: 4,
+               264: 5, 265: 5,
+               288: 6,
+               305: 7,
+               319: 8,
+               105: 9, 161: 9}
     for i, s in enumerate(sample_name_trimed):
         data, label = feeder[i]
         #labels limited
@@ -88,7 +97,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--data_path', default='/mnt/Disk1/qingl/data/kinetics-skeleton')
     parser.add_argument(
-        '--out_folder', default='data/Trim/kinetics-skeleton')
+        '--out_folder', default='/mnt/Disk1/qingl/data/kinetics-skeleton10')
     arg = parser.parse_args()
 
     part = ['train', 'val']
