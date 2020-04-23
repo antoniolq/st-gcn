@@ -95,7 +95,7 @@ class Model(nn.Module):
             x, _ = gcn(x, self.A * importance)
 
         # global pooling
-        x = F.max_pool2d(x, x.size()[2:])
+        x = F.avg_pool2d(x, x.size()[2:])
         x = x.view(N, M, -1, 1, 1).mean(dim=1)
 
         # prediction
@@ -182,7 +182,7 @@ class GCN(nn.Module):
                 nn.BatchNorm2d(out_channels),
             )
 
-        self.relu = nn.ReLU(inplace=True)
+        self.relu = nn.LeakyReLU(inplace=True)
 
     def forward(self, x, A):
 
@@ -232,7 +232,7 @@ class TCN(nn.Module):
 
         self.tcn = nn.Sequential(
             nn.BatchNorm2d(out_channels),
-            nn.ReLU(inplace=True),
+            nn.LeakyReLU(inplace=True),
             nn.Conv2d(
                 in_channels,
                 out_channels,
@@ -260,7 +260,7 @@ class TCN(nn.Module):
                 nn.BatchNorm2d(out_channels),
             )
 
-        self.relu = nn.ReLU(inplace=True)
+        self.relu = nn.LeakyReLU(inplace=True)
 
     def forward(self, x, A):
 
