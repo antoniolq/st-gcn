@@ -65,6 +65,12 @@ class Model(nn.Module):
             TCN(256, 256, kernel_size, 1, **kwargs),
             GCN(256, 256, kernel_size, 1, **kwargs),
             TCN(256, 256, kernel_size, 1, **kwargs),
+            GCN(256, 512, kernel_size, 1, **kwargs),
+            TCN(512, 512, kernel_size, 1, **kwargs),
+            GCN(512, 512, kernel_size, 1, **kwargs),
+            TCN(512, 512, kernel_size, 1, **kwargs),
+            GCN(512, 512, kernel_size, 1, **kwargs),
+            TCN(512, 512, kernel_size, 1, **kwargs),
         ))
 
         # initialize parameters for edge importance weighting
@@ -77,7 +83,7 @@ class Model(nn.Module):
             self.edge_importance = [1] * len(self.st_gcn_networks)
 
         # fcn for prediction
-        self.fcn = nn.Conv2d(256, num_class, kernel_size=1)
+        self.fcn = nn.Conv2d(512, num_class, kernel_size=1)
 
     def forward(self, x):
 
