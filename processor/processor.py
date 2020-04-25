@@ -54,6 +54,7 @@ class Processor(IO):
                 dataset=Feeder(**self.arg.train_feeder_args),
                 batch_size=self.arg.batch_size,
                 shuffle=True,
+                pin_memory=True,
                 num_workers=self.arg.num_worker * torchlight.ngpu(
                     self.arg.device),
                 drop_last=True)
@@ -62,6 +63,7 @@ class Processor(IO):
                 dataset=Feeder(**self.arg.test_feeder_args),
                 batch_size=self.arg.test_batch_size,
                 shuffle=False,
+                pin_memory=True,
                 num_workers=self.arg.num_worker * torchlight.ngpu(
                     self.arg.device))
 
