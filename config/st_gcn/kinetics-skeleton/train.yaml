@@ -1,4 +1,4 @@
-work_dir: ./work_dir/recognition/kinetics_skeleton/class400_v3
+work_dir: ./work_dir/recognition/kinetics_skeleton/relu/GeLU
 
 # feeder
 feeder: feeder.feeder.Feeder
