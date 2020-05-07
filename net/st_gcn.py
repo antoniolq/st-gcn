@@ -182,7 +182,7 @@ class GCN(nn.Module):
                 nn.BatchNorm2d(out_channels),
             )
 
-        self.relu = nn.GELU()
+        self.relu = nn.SELU(inplace=True)
 
     def forward(self, x, A):
 
@@ -232,7 +232,7 @@ class TCN(nn.Module):
 
         self.tcn = nn.Sequential(
             nn.BatchNorm2d(out_channels),
-            nn.GELU(),
+            nn.SELU(inplace=True),
             nn.Conv2d(
                 in_channels,
                 out_channels,
