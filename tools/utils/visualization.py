@@ -101,6 +101,7 @@ def stgcn_visualize(pose,
         rgb_result = blurred_mask.astype(float) * 0.75
         rgb_result += frame.astype(float) * 0.5
         rgb_result += skeleton.astype(float) * 0.25
+        rgb_result += text.astype(float)
         rgb_result[rgb_result > 255] = 255
         rgb_result.astype(np.uint8)
 
