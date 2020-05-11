@@ -17,7 +17,7 @@ from torchlight import DictAction
 from torchlight import import_class
 
 from .io import IO
-
+torch.backends.cudnn.benchmark = True
 class Processor(IO):
     """
         Base Processor
