@@ -67,7 +67,7 @@ class Demo(IO):
         # extract feature
         print('\nNetwork forwad...')
         self.model.eval()
-        output, feature = self.model.module.extract_feature(data)
+        output, feature = self.model.extract_feature(data)
         output = output[0]
         feature = feature[0]
         intensity = (feature*feature).sum(dim=0)**0.5
