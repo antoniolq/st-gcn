@@ -131,9 +131,10 @@ def stgcn_visualize(pose,
         if fps is not None:
             put_text(skeleton, 'fps:{:.2f}'.format(fps), (0.9, 0.5))
 
-        img0 = np.concatenate((frame, skeleton), axis=1)
-        img1 = np.concatenate((skeleton_result, rgb_result), axis=1)
-        img = np.concatenate((img0, img1), axis=0)
+        # img0 = np.concatenate((frame, skeleton), axis=1)
+        # img1 = np.concatenate((skeleton_result, rgb_result), axis=1)
+        # img = np.concatenate((img0, img1), axis=0)
+        img = rgb_result
 
         yield img
 
