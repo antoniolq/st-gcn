@@ -68,8 +68,6 @@ class IO():
     def load_model(self):
         self.model = self.io.load_model(self.arg.model,
                                         **(self.arg.model_args))
-        if isinstance(self.model, torch.nn.DataParallel):
-            self.model = self.model.module
 
     def load_weights(self):
         if self.arg.weights:
