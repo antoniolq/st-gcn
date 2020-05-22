@@ -1,4 +1,4 @@
-work_dir: ./work_dir/recognition/kinetics_skeleton/relu/Tanh
+work_dir: ./work_dir/recognition/kinetics_skeleton/relu/ELU
 
 # feeder
 feeder: feeder.feeder.Feeder

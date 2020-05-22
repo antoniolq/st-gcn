@@ -182,7 +182,7 @@ class GCN(nn.Module):
                 nn.BatchNorm2d(out_channels),
             )
 
-        self.relu = nn.Tanh()
+        self.relu = nn.ELU(inplace=True)
 
     def forward(self, x, A):
 
@@ -232,7 +232,7 @@ class TCN(nn.Module):
 
         self.tcn = nn.Sequential(
             nn.BatchNorm2d(out_channels),
-            nn.Tanh(),
+            nn.ELU(inplace=True),
             nn.Conv2d(
                 in_channels,
                 out_channels,
@@ -260,7 +260,7 @@ class TCN(nn.Module):
                 nn.BatchNorm2d(out_channels),
             )
 
-        self.relu = nn.Tanh()
+        self.relu = nn.ELU(inplace=True)
 
     def forward(self, x, A):
 
