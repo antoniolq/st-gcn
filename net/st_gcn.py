@@ -182,7 +182,7 @@ class GCN(nn.Module):
                 nn.BatchNorm2d(out_channels),
             )
 
-        self.relu = nn.LeakyReLU(inplace=True)
+        self.relu = nn.LeakyReLU(inplace=True),
 
     def forward(self, x, A):
 
